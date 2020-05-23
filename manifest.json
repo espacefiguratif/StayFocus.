@@ -1,0 +1,31 @@
+{
+  "name": "StayFocus.",
+  "version": "1.0",
+  "description": "Manage distractions when in work.",
+  "permissions": ["activeTab", "declarativeContent", "storage", "webRequest", "webNavigation","https://www.youtube.com/"],
+  "options_page": "options.html",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "StayFocus.",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "externally_connectable": {
+    "matches": ["https://www.googleapis.com/*"]
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-qznLcsROx4GACP2dm0UCKCzCG+HiZ1guq6ZZDob/Tng=' filesystem: ; object-src 'self'"
+}

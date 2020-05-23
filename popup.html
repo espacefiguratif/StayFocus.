@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="FR">
+  <head>
+	<style>
+		* {
+			user-select: none;
+		}
+		body {
+			margin: 0px;
+			height: 400px;
+			width: 250px;
+		}
+	 	#div-main {
+			margin: none;
+			height: 100%;
+			width: 100%;
+			background: #134E5E;
+				/* fallback for old browsers */
+			background: -webkit-linear-gradient(to top left, #71B280, #134E5E);
+				/* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to top left, #71B280, #134E5E);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	  	}
+		#div-main .div-nav-top {
+			position: absolute;
+			z-index: 10;
+			top: 0;
+			background: rgba(0, 0, 0, 0.6);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			height: 40px;
+			width: 100%;
+		}
+
+		#div-main .div-nav-top .div-nav-top_spacer-left {
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+		}
+
+		#div-main .div-nav-top .div-nav-top_spacer-left .div-nav-top_spacer-left_text {
+			font-family: 'Inter', sans-serif;
+			font-size: 20px;
+			font-weight: 500;
+			color: white;
+		}
+
+		#div-main .div-nav-bottom {
+			position: absolute;
+			z-index: 10;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.6);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			height: 40px;
+			width: 100%;
+		}
+
+		#div-main .div-nav-bottom .div-nav-bottom_spacer-right {
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+		}
+
+		#div-main .div-nav-bottom .div-nav-bottom_spacer-right .div-nav-bottom_spacer-right_text {
+			font-family: 'Inter', sans-serif;
+			font-size: 15px;
+			font-weight: 200;
+			color: white;
+			text-decoration: underline;
+			text-decoration-color: white;
+			cursor: pointer;
+		}
+
+		#div-main .div-nav-middle {
+			position: absolute;
+			z-index: 10;
+			top: 40px;
+			background: rgba(0, 0, 0, 0.1);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			height: calc(100% - 80px);
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#div-main .div-nav-middle .div-nav-middle-shutdown-div {
+			z-index: 10;
+			background: rgba(0, 0, 0, 0.6);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(50px);
+			height: calc(100% - 80px);
+			width: 120px;
+			height: 120px;
+			border-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+		}
+
+		#div-main .div-nav-middle .div-nav-middle-shutdown-div .disable{
+			-webkit-filter: opacity(.1) drop-shadow(0 0 0 deepskyblue);
+			filter: opacity(.1) drop-shadow(0 0 0 deepskyblue);
+		}
+	</style>
+	<script src="vue.js"></script>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;531;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+	<div id="div-main">
+		<div class="div-nav-top">
+			<div class="div-nav-top_spacer-left">
+				<h1 class="div-nav-top_spacer-left_text">StayFocus.</h1>
+			</div>
+		</div>
+		<div class="div-nav-middle">
+			<div class="div-nav-middle-shutdown-div" v-on:click="changeState">
+				<img src="images/shutdown icon.png" v-bind:class="(focus == false) ? 'disable' : ''">
+			</div>
+		</div>
+		<div class="div-nav-bottom">
+			<div class="div-nav-bottom_spacer-right" v-on:click="openOptions">
+				<h1 class="div-nav-bottom_spacer-right_text">Options</h1>
+			</div>
+		</div>
+	</div>
+	<script src="popup.js"></script>
+  </body>
+</html>

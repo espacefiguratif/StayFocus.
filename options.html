@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="FR">
+    <head>
+        <meta charset="utf-8">
+		<title>StayFocus.</title>
+		<script src="vue.js"></script>
+        <style>
+            a, abbr, acronym, address, applet, big, blockquote, body, button, caption, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, form, h1, h2, h3, h4, h5, h6, html, iframe, img, input, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, ul, var {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-weight: inherit;
+				font-style: inherit;
+				font-family: inherit;
+				font-size: 100%;
+				vertical-align: baseline;
+            }
+
+			html, body {
+				height: 100%;
+				width: 100%;
+				user-select: none;
+			}
+
+			#div-main {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: #134E5E;
+			/* fallback for old browsers */
+			background: -webkit-linear-gradient(to top left, #71B280, #134E5E);
+			/* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to top left, #71B280, #134E5E);
+			/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+
+			#div-main .div-nav-top {
+			position: absolute;
+			z-index: 10;
+			top: 0;
+			background: rgba(0, 0, 0, 0.6);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			height: 55px;
+			width: 100%;
+			}
+
+			#div-main .div-nav-top .div-nav-top_spacer-left {
+			position: absolute;
+			left: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+			}
+
+			#div-main .div-nav-top .div-nav-top_spacer-left .div-nav-top_spacer-left_text {
+			font-family: 'Inter', sans-serif;
+			font-size: 20px;
+			font-weight: 500;
+			color: white;
+			}
+
+			#div-main .div-main-container {
+			width: 90%;
+			border: 1px solid #fff0;
+			position: relative;
+			margin-left: auto;
+			margin-right: auto;
+			top: 85px;
+			border-radius: 5px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center {
+			position: relative;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 25px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 40px;
+			margin-top: 20px;
+			background: rgba(0, 0, 0, 0.6);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			cursor: pointer;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-left {
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-left .icon-platform {
+			font-size: 15px;
+			color: white;
+			margin-right: 5px;
+			display: inline-block;
+			vertical-align: middle;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-left .div-main-container_category_animation-button_spacer-left_texte {
+			font-family: 'Inter', sans-serif;
+			font-size: 15px;
+			font-weight: 300;
+			color: white;
+			display: inline-block;
+			vertical-align: middle;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-right {
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-right .icon-arrow-down {
+			font-size: 20px;
+			color: white;
+			display: none;
+			margin-left: 15px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button .div-main-container_category_animation-button_spacer-right .icon-bar {
+			width: 15px;
+			height: 2px;
+			background-color: white;
+			display: inline-block;
+			margin-left: 15px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button:hover {
+			background: rgba(0, 0, 0, 0.5);
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container {
+			position: relative;
+			width: 100%;
+			margin-bottom: 20px;
+			display: none;
+			animation-duration: 0.5s;
+			animation-name: down;
+			}
+
+			@keyframes down {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton {
+			position: relative;
+			margin-bottom: 5px;
+			width: 100%;
+			height: 30px;
+			background: rgba(0, 0, 0, 0.3);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			backdrop-filter: saturate(180%) blur(20px);
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-left {
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-left .div-main-container_category_animation-button_main-container_boutton_spacer-left_text {
+			font-family: 'Inter', sans-serif;
+			font-size: 14px;
+			font-weight: 300;
+			color: white;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right {
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			height: auto;
+			width: auto;
+			/* Rounded sliders */
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .switch {
+			position: relative;
+			display: inline-block;
+			width: 45px;
+			height: 20px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .slider:before {
+			position: absolute;
+			content: "";
+			height: 16px;
+			width: 16px;
+			left: 2px;
+			bottom: 2px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right input:checked + .slider {
+			background-color: #2196F3;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right input:focus + .slider {
+			box-shadow: 0 0 1px #2196F3;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right input:checked + .slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .slider.round {
+			border-radius: 34px;
+			}
+
+			#div-main .div-main-container .div-main-container_category_center .div-main-container_category_animation-button_main-container .div-main-container_category_animation-button_main-container_boutton .div-main-container_category_animation-button_main-container_boutton_spacer-right .slider.round:before {
+			border-radius: 50%;
+			}
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;531;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    </head>
+    <body>
+        <div id="div-main">
+
+
+            <div class="div-nav-top">
+                <div class="div-nav-top_spacer-left">
+                    <h1 class="div-nav-top_spacer-left_text">StayFocus.</h1>
+                </div>
+            </div>
+
+
+            <div class="div-main-container">
+                <div class="div-main-container_category_center">
+
+                    <div class="div-main-container_category_animation-button" v-on:click="servicesPanels.openYoutube = !servicesPanels.openYoutube; savePanelsOpening();">
+                        <div class="div-main-container_category_animation-button_spacer-left">
+                            <i class="fab fa-youtube icon-platform"></i>
+                            <h1 class="div-main-container_category_animation-button_spacer-left_texte">Youtube</h1>
+                        </div>
+                        <div class="div-main-container_category_animation-button_spacer-right">
+                            <span style="display:inline-block;"><h1 style="font-size:12px;color:white;font-family: 'Inter', sans-serif;text-decoration:underline;cursor:pointer;" v-on:click="resetYoutubeCategories($event)">Valeurs par default</h1></span>
+                            <i class="fas fa-chevron-down icon-arrow-down" v-bind:style="servicesPanels.openYoutube == true ? 'display: none;' : 'display: inline-block;'"></i>
+                            <div class="icon-bar" v-bind:style="servicesPanels.openYoutube == false ? 'display: none;' : 'display: inline-block;'"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="div-main-container_category_animation-button_main-container" v-bind:style="servicesPanels.openYoutube == false ? 'display: none;' : 'display: block;'">
+                        <div v-for="category in youtube.categories" class="div-main-container_category_animation-button_main-container_boutton">
+                            <div class="div-main-container_category_animation-button_main-container_boutton_spacer-left">
+                                <h1 class="div-main-container_category_animation-button_main-container_boutton_spacer-left_text">{{category.name}}</h1>
+                            </div>
+                            <div class="div-main-container_category_animation-button_main-container_boutton_spacer-right">
+                                <label class="switch">
+                                    <input type="checkbox" v-bind:data-id="category.id" v-model="category.value" v-on:change="saveYoutubeCategories">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="div-main-container_category_animation-button" v-on:click="servicesPanels.openSpotify = !servicesPanels.openSpotify; savePanelsOpening();">
+                        <div class="div-main-container_category_animation-button_spacer-left">
+                            <i class="fab fa-spotify icon-platform"></i>
+                            <h1 class="div-main-container_category_animation-button_spacer-left_texte">Spotify</h1>
+                        </div>
+                        <div class="div-main-container_category_animation-button_spacer-right">
+                            <span style="display:inline-block;"><h1 style="font-size:12px;color:white;font-family: 'Inter', sans-serif;text-decoration:underline;cursor:pointer;">Valeurs par default</h1></span>
+                            <i class="fas fa-chevron-down icon-arrow-down" v-bind:style="servicesPanels.openSpotify == true ? 'display: none;' : 'display: inline-block;'"></i>
+                            <div class="icon-bar" v-bind:style="servicesPanels.openSpotify == false ? 'display: none;' : 'display: inline-block;'"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="div-main-container_category_animation-button_main-container" v-bind:style="servicesPanels.openSpotify == false ? 'display: none;' : 'display: block;'">
+                        <div class="div-main-container_category_animation-button_main-container_boutton">
+                            <div class="div-main-container_category_animation-button_main-container_boutton_spacer-left">
+                                <h1 class="div-main-container_category_animation-button_main-container_boutton_spacer-left_text"></h1>
+                            </div>
+                            <div class="div-main-container_category_animation-button_main-container_boutton_spacer-right">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="div-nav-bottom">
+
+            </div>
+
+
+		</div>
+		<script src="options.js"></script>
+    </body>
+	
+</html>
